@@ -1,0 +1,59 @@
+<h1>Listing assets</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Vendor sku number</th>
+    <th>Status</th>
+    <th>Mac address</th>
+    <th>Serial number</th>
+    <th>Quantity in stock</th>
+    <th>Quantiy recieved</th>
+    <th>Quantity shipped</th>
+    <th>At location at</th>
+    <th>Decomissioned at</th>
+    <th>Purchased at</th>
+    <th>Intended site</th>
+    <th>Price</th>
+    <th>Extended price</th>
+    <th>Rus category</th>
+    <th>Rus subcategory</th>
+    <th>Budget line item</th>
+    <th>Contract</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @assets.each do |asset| %>
+  <tr>
+    <td><%= asset.name %></td>
+    <td><%= asset.description %></td>
+    <td><%= asset.vendor_sku_number %></td>
+    <td><%= asset.status %></td>
+    <td><%= asset.mac_address %></td>
+    <td><%= asset.serial_number %></td>
+    <td><%= asset.quantity_in_stock %></td>
+    <td><%= asset.quantiy_recieved %></td>
+    <td><%= asset.quantity_shipped %></td>
+    <td><%= asset.at_location_at %></td>
+    <td><%= asset.decomissioned_at %></td>
+    <td><%= asset.purchased_at %></td>
+    <td><%= asset.intended_site %></td>
+    <td><%= asset.price %></td>
+    <td><%= asset.extended_price %></td>
+    <td><%= asset.rus_category %></td>
+    <td><%= asset.rus_subcategory %></td>
+    <td><%= asset.budget_line_item %></td>
+    <td><%= asset.contract %></td>
+    <td><%= link_to 'Show', asset %></td>
+    <td><%= link_to 'Edit', edit_asset_path(asset) %></td>
+    <td><%= link_to 'Destroy', asset, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Asset', new_asset_path %>

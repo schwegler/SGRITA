@@ -1,4 +1,20 @@
 SGRITA::Application.routes.draw do
+  resources :rus_pos
+
+  resources :products
+
+  resources :sites
+
+  resources :shipments
+
+  resources :autos
+
+  resources :employees
+
+  resources :vendors
+
+  resources :assets
+
   ActiveAdmin.routes(self)
 
   devise_for :admin_users, ActiveAdmin::Devise.config

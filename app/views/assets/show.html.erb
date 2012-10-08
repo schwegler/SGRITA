@@ -1,0 +1,100 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @asset.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @asset.description %>
+</p>
+
+<p>
+  <b>Vendor sku number:</b>
+  <%= @asset.vendor_sku_number %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @asset.status %>
+</p>
+
+<p>
+  <b>Mac address:</b>
+  <%= @asset.mac_address %>
+</p>
+
+<p>
+  <b>Serial number:</b>
+  <%= @asset.serial_number %>
+</p>
+
+<p>
+  <b>Quantity in stock:</b>
+  <%= @asset.quantity_in_stock %>
+</p>
+
+<p>
+  <b>Quantiy recieved:</b>
+  <%= @asset.quantiy_recieved %>
+</p>
+
+<p>
+  <b>Quantity shipped:</b>
+  <%= @asset.quantity_shipped %>
+</p>
+
+<p>
+  <b>At location at:</b>
+  <%= @asset.at_location_at %>
+</p>
+
+<p>
+  <b>Decomissioned at:</b>
+  <%= @asset.decomissioned_at %>
+</p>
+
+<p>
+  <b>Purchased at:</b>
+  <%= @asset.purchased_at %>
+</p>
+
+<p>
+  <b>Intended site:</b>
+  <%= @asset.intended_site %>
+</p>
+
+<p>
+  <b>Price:</b>
+  <%= @asset.price %>
+</p>
+
+<p>
+  <b>Extended price:</b>
+  <%= @asset.extended_price %>
+</p>
+
+<p>
+  <b>Rus category:</b>
+  <%= @asset.rus_category %>
+</p>
+
+<p>
+  <b>Rus subcategory:</b>
+  <%= @asset.rus_subcategory %>
+</p>
+
+<p>
+  <b>Budget line item:</b>
+  <%= @asset.budget_line_item %>
+</p>
+
+<p>
+  <b>Contract:</b>
+  <%= @asset.contract %>
+</p>
+
+
+<%= link_to 'Edit', edit_asset_path(@asset) %> |
+<%= link_to 'Back', assets_path %>

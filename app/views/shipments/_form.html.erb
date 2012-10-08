@@ -1,0 +1,49 @@
+<%= form_for(@shipment) do |f| %>
+  <% if @shipment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@shipment.errors.count, "error") %> prohibited this shipment from being saved:</h2>
+
+      <ul>
+      <% @shipment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :carrier %><br />
+    <%= f.text_field :carrier %>
+  </div>
+  <div class="field">
+    <%= f.label :tracking_number %><br />
+    <%= f.text_field :tracking_number %>
+  </div>
+  <div class="field">
+    <%= f.label :tracking_url %><br />
+    <%= f.text_field :tracking_url %>
+  </div>
+  <div class="field">
+    <%= f.label :shiping_via %><br />
+    <%= f.text_field :shiping_via %>
+  </div>
+  <div class="field">
+    <%= f.label :shipping_at %><br />
+    <%= f.date_select :shipping_at %>
+  </div>
+  <div class="field">
+    <%= f.label :on_schedule_at %><br />
+    <%= f.date_select :on_schedule_at %>
+  </div>
+  <div class="field">
+    <%= f.label :shipped_at %><br />
+    <%= f.date_select :shipped_at %>
+  </div>
+  <div class="field">
+    <%= f.label :delivered_at %><br />
+    <%= f.date_select :delivered_at %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

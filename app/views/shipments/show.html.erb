@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Carrier:</b>
+  <%= @shipment.carrier %>
+</p>
+
+<p>
+  <b>Tracking number:</b>
+  <%= @shipment.tracking_number %>
+</p>
+
+<p>
+  <b>Tracking url:</b>
+  <%= @shipment.tracking_url %>
+</p>
+
+<p>
+  <b>Shiping via:</b>
+  <%= @shipment.shiping_via %>
+</p>
+
+<p>
+  <b>Shipping at:</b>
+  <%= @shipment.shipping_at %>
+</p>
+
+<p>
+  <b>On schedule at:</b>
+  <%= @shipment.on_schedule_at %>
+</p>
+
+<p>
+  <b>Shipped at:</b>
+  <%= @shipment.shipped_at %>
+</p>
+
+<p>
+  <b>Delivered at:</b>
+  <%= @shipment.delivered_at %>
+</p>
+
+
+<%= link_to 'Edit', edit_shipment_path(@shipment) %> |
+<%= link_to 'Back', shipments_path %>

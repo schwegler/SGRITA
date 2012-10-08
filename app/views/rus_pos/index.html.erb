@@ -1,0 +1,35 @@
+<h1>Listing rus_pos</h1>
+
+<table>
+  <tr>
+    <th>Delivery cost</th>
+    <th>Sales tax</th>
+    <th>Total cost</th>
+    <th>Terms</th>
+    <th>Ships to</th>
+    <th>Rus project number</th>
+    <th>Title</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @rus_pos.each do |rus_po| %>
+  <tr>
+    <td><%= rus_po.delivery_cost %></td>
+    <td><%= rus_po.sales_tax %></td>
+    <td><%= rus_po.total_cost %></td>
+    <td><%= rus_po.terms %></td>
+    <td><%= rus_po.ships_to %></td>
+    <td><%= rus_po.RUS_project_number %></td>
+    <td><%= rus_po.title %></td>
+    <td><%= link_to 'Show', rus_po %></td>
+    <td><%= link_to 'Edit', edit_rus_po_path(rus_po) %></td>
+    <td><%= link_to 'Destroy', rus_po, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Rus po', new_rus_po_path %>

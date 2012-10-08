@@ -1,4 +1,5 @@
 ActiveAdmin.register AdminUser do     
+  menu :priority => 150, :parent => "People"  
   index do                            
     column :email                     
     column :current_sign_in_at        

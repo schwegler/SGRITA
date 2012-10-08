@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Make:</b>
+  <%= @auto.make %>
+</p>
+
+<p>
+  <b>Model:</b>
+  <%= @auto.model %>
+</p>
+
+<p>
+  <b>Year:</b>
+  <%= @auto.year %>
+</p>
+
+<p>
+  <b>Fleet number:</b>
+  <%= @auto.fleet_number %>
+</p>
+
+
+<%= link_to 'Edit', edit_auto_path(@auto) %> |
+<%= link_to 'Back', autos_path %>

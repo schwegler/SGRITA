@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Delivery cost:</b>
+  <%= @rus_po.delivery_cost %>
+</p>
+
+<p>
+  <b>Sales tax:</b>
+  <%= @rus_po.sales_tax %>
+</p>
+
+<p>
+  <b>Total cost:</b>
+  <%= @rus_po.total_cost %>
+</p>
+
+<p>
+  <b>Terms:</b>
+  <%= @rus_po.terms %>
+</p>
+
+<p>
+  <b>Ships to:</b>
+  <%= @rus_po.ships_to %>
+</p>
+
+<p>
+  <b>Rus project number:</b>
+  <%= @rus_po.RUS_project_number %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%= @rus_po.title %>
+</p>
+
+
+<%= link_to 'Edit', edit_rus_po_path(@rus_po) %> |
+<%= link_to 'Back', rus_pos_path %>

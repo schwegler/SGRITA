@@ -1,0 +1,32 @@
+# == Schema Information
+#
+# Table name: sites
+#
+#  id         :integer          not null, primary key
+#  name       :string(255)
+#  number     :integer
+#  gps        :string(255)
+#  kind       :string(255)
+#  city       :string(255)
+#  county     :string(255)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  number: 1
+  gps: MyString
+  kind: MyString
+  city: MyString
+  county: MyString
+
+two:
+  name: MyString
+  number: 1
+  gps: MyString
+  kind: MyString
+  city: MyString
+  county: MyString

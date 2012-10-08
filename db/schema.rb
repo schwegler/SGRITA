@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121008143102) do
+ActiveRecord::Schema.define(:version => 20121008173527) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -45,5 +45,110 @@ ActiveRecord::Schema.define(:version => 20121008143102) do
 
   add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
   add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
+
+  create_table "assets", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "vendor_sku_number"
+    t.string   "status"
+    t.string   "mac_address"
+    t.string   "serial_number"
+    t.integer  "quantity_in_stock"
+    t.integer  "quantiy_recieved"
+    t.integer  "quantity_shipped"
+    t.date     "at_location_at"
+    t.date     "decomissioned_at"
+    t.date     "purchased_at"
+    t.string   "intended_site"
+    t.decimal  "price"
+    t.decimal  "extended_price"
+    t.string   "rus_category"
+    t.string   "rus_subcategory"
+    t.string   "budget_line_item"
+    t.string   "contract"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.integer  "rus_po_id"
+    t.integer  "shipment_id"
+    t.integer  "vendor_id"
+    t.integer  "product_id"
+  end
+
+  create_table "autos", :force => true do |t|
+    t.string   "make"
+    t.string   "model"
+    t.string   "year"
+    t.string   "fleet_number"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "employees", :force => true do |t|
+    t.string   "name"
+    t.string   "work_phone"
+    t.string   "home_phone"
+    t.string   "mobile_phone"
+    t.string   "address"
+    t.string   "email"
+    t.string   "title"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "products", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "manufacturer"
+    t.string   "sku_number"
+    t.string   "mfr_number"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "rus_pos", :force => true do |t|
+    t.decimal  "delivery_cost"
+    t.decimal  "sales_tax"
+    t.decimal  "total_cost"
+    t.string   "terms"
+    t.text     "ships_to"
+    t.string   "RUS_project_number"
+    t.string   "title"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  create_table "shipments", :force => true do |t|
+    t.string   "carrier"
+    t.string   "tracking_number"
+    t.string   "tracking_url"
+    t.string   "shiping_via"
+    t.date     "shipping_at"
+    t.date     "on_schedule_at"
+    t.date     "shipped_at"
+    t.date     "delivered_at"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  create_table "sites", :force => true do |t|
+    t.string   "name"
+    t.integer  "number"
+    t.string   "gps"
+    t.string   "kind"
+    t.string   "city"
+    t.string   "county"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "vendors", :force => true do |t|
+    t.string   "name"
+    t.text     "address"
+    t.string   "phone"
+    t.string   "website"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "asset_id"
+  end
 
 end

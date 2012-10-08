@@ -1,0 +1,38 @@
+# == Schema Information
+#
+# Table name: shipments
+#
+#  id              :integer          not null, primary key
+#  carrier         :string(255)
+#  tracking_number :string(255)
+#  tracking_url    :string(255)
+#  shiping_via     :string(255)
+#  shipping_at     :date
+#  on_schedule_at  :date
+#  shipped_at      :date
+#  delivered_at    :date
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  carrier: MyString
+  tracking_number: MyString
+  tracking_url: MyString
+  shiping_via: MyString
+  shipping_at: 2012-10-08
+  on_schedule_at: 2012-10-08
+  shipped_at: 2012-10-08
+  delivered_at: 2012-10-08
+
+two:
+  carrier: MyString
+  tracking_number: MyString
+  tracking_url: MyString
+  shiping_via: MyString
+  shipping_at: 2012-10-08
+  on_schedule_at: 2012-10-08
+  shipped_at: 2012-10-08
+  delivered_at: 2012-10-08
