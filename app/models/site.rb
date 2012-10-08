@@ -15,4 +15,5 @@
 
 class Site < ActiveRecord::Base
   attr_accessible :city, :county, :gps, :kind, :name, :number
+  has_many :assets
 end

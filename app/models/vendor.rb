@@ -12,5 +12,6 @@
 #
 
 class Vendor < ActiveRecord::Base
-  attr_accessible :address, :name, :phone, :website
+  	attr_accessible :address, :name, :phone, :website
+	has_many :assets
 end

@@ -12,5 +12,6 @@
 #
 
 class Auto < ActiveRecord::Base
-  attr_accessible :fleet_number, :make, :model, :year
+  	attr_accessible :fleet_number, :make, :model, :year
+	has_many :assets
 end

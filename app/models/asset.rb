@@ -24,11 +24,26 @@
 #  contract          :string(255)
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  rus_po_id         :integer
+#  shipment_id       :integer
+#  vendor_id         :integer
+#  product_id        :integer
+#  auto_id           :integer
+#  site_id           :integer
+#  attachment        :string(255)
 #
 
 class Asset < ActiveRecord::Base
-  	attr_accessible :at_location_at, :budget_line_item, :contract, :decomissioned_at, :description, :extended_price, :intended_site, :mac_address, :name, :price, :purchased_at, :quantity_in_stock, :quantity_shipped, :quantiy_recieved, :rus_category, :rus_subcategory, :serial_number, :status, :vendor_sku_number
+  	attr_accessible :attachment, :site_id, :rus_po_id, :shipment_id, :vendor_id, :product_id, :auto_id, :at_location_at, :budget_line_item, :contract, :decomissioned_at, :description, :extended_price, :intended_site, :mac_address, :name, :price, :purchased_at, :quantity_in_stock, :quantity_shipped, :quantiy_recieved, :rus_category, :rus_subcategory, :serial_number, :status, :vendor_sku_number
+  	mount_uploader :attachment, AttachmentUploader
   	scope :notdeployed, where(:at_location_at => nil)
   	scope :decomissioned, where(:status => 'Decomissioned')
  	scope :notpurchased, where(:purchased_at => nil)
+ 	belongs_to :rus_po 
+ 	belongs_to :shipment
+ 	belongs_to :vendor
+ 	belongs_to :product
+ 	belongs_to :auto
+ 	belongs_to :site
+  	STATUSES = ['PO Opened', 'Ordered', 'Shipped', 'Recieved', 'Deployed', 'Decomissioned', 'RMA']
 end

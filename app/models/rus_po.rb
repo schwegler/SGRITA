@@ -15,5 +15,7 @@
 #
 
 class RusPo < ActiveRecord::Base
-  attr_accessible :RUS_project_number, :delivery_cost, :sales_tax, :ships_to, :terms, :title, :total_cost
+  	attr_accessible :RUS_project_number, :delivery_cost, :sales_tax, :ships_to, :terms, :title, :total_cost, :assets_attributes
+	has_many :assets
+	accepts_nested_attributes_for :assets, :allow_destroy => true
 end

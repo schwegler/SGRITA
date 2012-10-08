@@ -16,7 +16,9 @@
 #
 
 class Shipment < ActiveRecord::Base
-  	attr_accessible :carrier, :delivered_at, :on_schedule_at, :shiping_via, :shipped_at, :shipping_at, :tracking_number, :tracking_url
+  	attr_accessible :asset_attributes, :carrier, :delivered_at, :on_schedule_at, :shiping_via, :shipped_at, :shipping_at, :tracking_number, :tracking_url
   	scope :notdelivered, where(:delivered_at => nil)
 	scope :notshipped, where(:shipped_at => nil)
+	has_many :assets
+	accepts_nested_attributes_for :assets
 end
