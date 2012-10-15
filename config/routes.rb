@@ -1,4 +1,6 @@
 SGRITA::Application.routes.draw do
+  mount RailsAdmin::Engine => '/radmin', :as => 'rails_admin'
+
   resources :rus_pos
 
   resources :products

@@ -35,7 +35,7 @@
 
 class Asset < ActiveRecord::Base
   	autocomplete :name, :vendor
-  	attr_accessible :attachment, :site_id, :rus_po_id, :shipment_id, :vendor_id, :product_id, :auto_id, :at_location_at, :budget_line_item, :contract, :decomissioned_at, :description, :extended_price, :intended_site, :mac_address, :name, :price, :purchased_at, :quantity_in_stock, :quantity_shipped, :quantiy_recieved, :rus_category, :rus_subcategory, :serial_number, :status, :vendor_sku_number
+  	attr_accessible :remove_attachment, :attachment_cache, :attachment, :site_id, :rus_po_id, :shipment_id, :vendor_id, :product_id, :auto_id, :at_location_at, :budget_line_item, :contract, :decomissioned_at, :description, :extended_price, :intended_site, :mac_address, :name, :price, :purchased_at, :quantity_in_stock, :quantity_shipped, :quantiy_recieved, :rus_category, :rus_subcategory, :serial_number, :status, :vendor_sku_number
   	mount_uploader :attachment, AttachmentUploader
   	scope :notdeployed, where(:at_location_at => nil)
   	scope :decomissioned, where(:status => 'Decomissioned')
