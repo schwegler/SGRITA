@@ -13,7 +13,8 @@
 #
 
 class Product < ActiveRecord::Base
-  	attr_accessible :asset_attributes, :description, :manufacturer, :mfr_number, :name, :sku_number
+  	attr_accessible :remove_attachment, :attachment_cache, :attachment, :asset_attributes, :description, :manufacturer, :mfr_number, :name, :sku_number
+  	mount_uploader :attachment, AttachmentUploader
 	has_many :assets	
 	accepts_nested_attributes_for :assets
 end

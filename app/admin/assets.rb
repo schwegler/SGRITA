@@ -106,7 +106,7 @@ ActiveAdmin.register Asset do
 					panel "Product Details" do 
 				      	attributes_table_for asset do
 					        row "Name" do 
-					        	asset.product.name if asset.product.name
+					        	link_to asset.product.name, [:admin, asset.product] if asset.product.name
 					        end
 					        row "Description" do 
 					        	asset.product.description if asset.product.description
@@ -157,7 +157,7 @@ ActiveAdmin.register Asset do
 
 	    	column do
 			    panel "Image" do
-	  				link_to(image_tag(asset.attachment_url(:small)), asset.attachment_url) if asset.attachment?
+	  				link_to(image_tag(asset.product.attachment_url(:small)), asset.product.attachment_url) if asset.product.attachment?
 		  		end
 		 		panel "Purchase Information" do 
 				    attributes_table_for asset do

@@ -1,17 +1,34 @@
 ActiveAdmin.register Product do
 	association_actions
 	menu :priority => 150, :parent => "Inventory"    
-	
-	index do
-	  	selectable_column
-	    column :name, :sortable => :name do |product|
-	    	div do
-	    		link_to product.name, [:admin, product]
-	    	end
-	    end
-	    column :description
-	    column :manufacturer
+	config.batch_actions = false
+	index :as => :grid, :columns => 4, :bulk_actions => false do |product|
+	    div do
+  			a :href => admin_product_path(product) do
+    			image_tag(product.attachment_url(:small))
+  			end
+		end
+		a truncate(product.name), :href => admin_product_path(product)
+		i product.sku_number
 	end
+
+  	sidebar :attachment, :only => :show do
+    	link_to(image_tag(product.attachment_url(:small)), product.attachment_url) if product.attachment?
+  	end
+
+  	sidebar :product_stats, :only => :show do
+  		attributes_table_for product do
+	  		row "QTY" do
+		  		i product.assets.count
+	  		end
+	  		row "Assets" do
+	  			product.assets.collect{|b| link_to b.name, [:admin, b]}.to_sentence.html_safe
+	  		end
+	  		row "Avg. Price" do
+	  			i number_to_currency product.assets.average(:extended_price)
+	  		end
+  		end
+  	end
 
 	form do |f|
   		f.inputs "Details" do

@@ -1,5 +1,5 @@
 SGRITA::Application.routes.draw do
-  mount RailsAdmin::Engine => '/radmin', :as => 'rails_admin'
+  mount RailsAdmin::Engine => '/poweradmin', :as => 'rails_admin'
 
   resources :rus_pos
 
