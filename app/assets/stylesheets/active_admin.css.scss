@@ -10,7 +10,7 @@
 // Active Admin's got SASS!
 @import "active_admin/mixins";
 @import "active_admin/base";
-
+@import "active_admin_associations";
 // Overriding any non-variable SASS must be done after the fact.
 // For example, to change the default status-tag color:
 //
@@ -87,3 +87,22 @@ img {
 	background-color: transparent;
 
 }
+
+.has_many {
+	h3 {
+		display: none;
+	}
+}
+
+@media print {
+  .rus_category {
+  	display: none;
+  }
+}
+
+body.active_admin .status_tag.recieved, body.active_admin .status_tag.deployed {
+    background: #8daa92; }
+body.active_admin .status_tag.po_opened, body.active_admin .status_tag.ordered, body.active_admin .status_tag.shipped {
+    background: #e29b20; }
+body.active_admin .status_tag.RMA, body.active_admin .status_tag.decomissioned {
+    background: #d45f53; }

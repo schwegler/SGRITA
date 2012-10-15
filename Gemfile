@@ -31,6 +31,7 @@ gem 'formtastic-plus-bootstrap'
 gem 'carrierwave'
 gem 'rmagick'
 gem 'nested_form', :git => "git://github.com/ryanb/nested_form.git"
+gem 'aa_associations'
 
 #Simple Admin Interface:
 gem 'activeadmin', :git => 'https://github.com/gregbell/active_admin.git'

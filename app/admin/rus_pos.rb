@@ -1,4 +1,5 @@
 ActiveAdmin.register RusPo do
+	association_actions
 	menu :priority => 150, :label => "RUS POs", :parent => "PO"
 	# == Schema Information
 #
@@ -16,6 +17,7 @@ ActiveAdmin.register RusPo do
 #  updated_at         :datetime         not null
 #
 	index do
+		selectable_column
 		column "PO Number" do |rus_po| 
 			link_to rus_po.title, [:admin, rus_po]
 		end
@@ -28,51 +30,52 @@ ActiveAdmin.register RusPo do
 		columns do
 			column :id => "masthead" do
 				div :class => "center" do
-					h1 "South Georgia Regional Information Technology Authority"
-					h2 "P.O. Box 388, 17432 S. Highland Avenue, Arlingotn, GA 39813"
+					h2 "South Georgia Regional Information Technology Authority"
+					h3 "P.O. Box 388, 17432 S. Highland Avenue, Arlington, GA 39813"
 				end
 			end
 		end
 
 		columns do
 			column do
-				div :class => "logo" do
-					h1 "SGRITA"
+				div :class => "logo noprint" do
+					image_tag("sgrita.png")
+				end	
+			end
+			column do
+				div do 
+					b "RUS Project Number"
+					i rus_po.RUS_project_number if rus_po.RUS_project_number?
 				end
-				div :class => "vendorname" do
+				div do
+					b "Work Order/PO:"
+					i rus_po.title if rus_po.title?
+				end
+				div do
 					b "Vendor Name:"
-				end			
-			end
-			column do
-				h2 do 
-					b "RUS Project Number:"
-					i rus_po.RUS_project_number if rus_po.RUS_project_number
-				end
-				b do
-					span "Work Order/PO:"
-					span rus_po.title
+					i rus_po.assets.first.vendor.name if rus_po.assets.first.vendor.name?
 				end
 			end
 			column do
-				span "Ship To:"
-				br
-				span rus_po.ships_to
+				b "Ship To"
+				br text_node rus_po.ships_to.html_safe
 			end
 		end
 		columns do
 			column do
 				panel "Assets" do
 				    table_for rus_po.assets do
-				     	#column "SKU Number" do |asset|
-				      	#	asset.sku if asset.sku
-				      	#end
-				      	column :name
+				      	column "Vendor SKU" do |asset|
+				      		asset.vendor_sku_number if asset.vendor_sku_number?
+				      	end
 				    	column :description
-				    	#column :mfr
-				    	#column :qty
+				      	column "MFR" do |asset|
+				      		asset.product.mfr_number
+				      	end				    	
+				    	column :quantity_in_stock, :label => "Quantity"
 				    	column :price do |asset|
 		    				div :class => "price" do
-		        				number_to_currency asset.price if asset.price
+		        				number_to_currency asset.price if asset.price?
 		    				end
 	    				end
 				    	column :extended_price do |asset|
@@ -80,19 +83,49 @@ ActiveAdmin.register RusPo do
 		        				number_to_currency asset.extended_price if asset.extended_price
 		    				end
 	    				end
-				    	column :intended_site
-				    	column :rus_category
-				    	column :rus_subcategory
-				    	column :budget_line_item
+				    	column :intended_site, :class => "noprint"
+				    	column :rus_category, :class => "noprint"
+				    	column :rus_subcategory, :class => "noprint"
+				    	column :budget_line_item, :class => "noprint"
 					end
 				end
+			end
+		end
+		columns :class => "printright" do
+			column do
+				i "."
+			end
+			column do
+				i "."
+			end
+			column do
+				columns do
+					column do
+						b "Shipping"
+						br number_to_currency rus_po.delivery_cost
+					end	
+					column do
+						b "Sales Tax"
+						br number_to_currency rus_po.sales_tax
+					end	
+					column do
+						b "Total"
+						br b i number_to_currency rus_po.total_cost	
+					end	
+				end		
 			end
 		end
 	end
 
 	form do |f|
   		f.inputs "Details" do
-    		f.input :title
+    		f.input :title, :label => "PO Number"
+    		f.input :RUS_project_number
+    		f.input :terms
+    		f.input :ships_to
+    		f.input :delivery_cost
+    		f.input :sales_tax
+    		f.input :total_cost
   		end
 
 		f.has_many :assets do |ass_f|
@@ -100,8 +133,11 @@ ActiveAdmin.register RusPo do
 		      	ass_f.input :name
 		      	ass_f.input :description
 		      	ass_f.input :vendor_sku_number
+	        	ass_f.input :status, :as => :select, :collection => Asset::STATUSES, :include_blank => false		      	
 		      	ass_f.input :product_id, :as => :select, :collection => Product.all, :include_blank => false
-		      	ass_f.input :quantity_in_stock
+		      	ass_f.input :vendor_id, :as => :select, :collection => Vendor.all, :include_blank => false
+		      	ass_f.input :intended_site, :as => :select, :collection => Site.all.collect {|s| [ s.name ] }, :include_blank => false
+		      	ass_f.input :quantity_in_stock, :label => "Quantity"
 		      	ass_f.input :price
 		      	ass_f.input :extended_price
 		      	ass_f.input :rus_category

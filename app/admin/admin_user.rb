@@ -1,4 +1,5 @@
-ActiveAdmin.register AdminUser do     
+ActiveAdmin.register AdminUser do  
+  association_actions   
   menu :priority => 150, :parent => "People"  
   index do                            
     column :email                     
@@ -11,7 +12,8 @@ ActiveAdmin.register AdminUser do
   filter :email                       
 
   form do |f|                         
-    f.inputs "Admin Details" do       
+    f.inputs "Admin Details" do 
+      f.input :display_name      
       f.input :email                  
       f.input :password               
       f.input :password_confirmation  

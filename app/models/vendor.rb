@@ -12,6 +12,7 @@
 #
 
 class Vendor < ActiveRecord::Base
+  	autocomplete :name
   	attr_accessible :address, :name, :phone, :website
 	has_many :assets
 end

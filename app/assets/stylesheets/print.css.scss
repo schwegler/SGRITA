@@ -1,0 +1,38 @@
+@media print {
+	.noprint {
+	  	display: none;
+	}
+	.printright {
+		text-align: right;
+		margin-right: 10px;
+		float: right;
+		.columns {
+			display: block;
+			margin-top: -80px;
+			width: 200px;
+			text-align: right;
+			.column {
+				width: 20px;
+				float: left;
+				text-align: left;
+			}
+		}
+	}
+	.admin_rus_po 
+	  	.rus {
+	  		display: none;
+	  	}
+		.rus_category {
+		  	display: none;
+		}
+		.rus_subcategory {
+		  	display: none;
+		}
+		.budget_line_item {
+		  	display: none;
+		}
+		.intended_site {
+			display: none;
+		}
+	
+}

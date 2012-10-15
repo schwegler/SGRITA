@@ -13,8 +13,8 @@ SGRITA::Application.routes.draw do
 
   resources :vendors
 
-  resources :assets
-
+  resources :assets 
+  
   ActiveAdmin.routes(self)
 
   devise_for :admin_users, ActiveAdmin::Devise.config

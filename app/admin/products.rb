@@ -1,4 +1,5 @@
 ActiveAdmin.register Product do
+	association_actions
 	menu :priority => 150, :parent => "Inventory"    
 	
 	index do
@@ -25,8 +26,8 @@ ActiveAdmin.register Product do
 		    ass_f.inputs do
 		      	ass_f.input :name
 		      	ass_f.input :description
-		      	ass_f.input :product_id, :as => :select, :collection => Product.all, :include_blank => false
-		      	ass_f.input :quantity_in_stock
+		      	ass_f.input :vendor_id, :as => :select, :collection => Vendor.all, :include_blank => false
+		      	ass_f.input :quantity_in_stock, :label => "Quantity"
 		      	ass_f.input :price
 		      	ass_f.input :extended_price
 		      	ass_f.input :rus_category
