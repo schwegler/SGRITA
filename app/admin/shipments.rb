@@ -13,16 +13,31 @@ ActiveAdmin.register Shipment do
 	    end
 	    column :carrier
 	    column :shiping_via
-	    column "Scheduled Arrival" do |shipment| 
+	    column "Scheduled Arrival", :sortable => :on_schedule_at do |shipment| 
 	    	shipment.on_schedule_at
+	    end
+	    column "Cost", :sortable => :delivery_cost do |shipment| 
+	    	number_to_currency shipment.delivery_cost
 	    end
 	    column do |shipment|
 	    	link_to "Track", shipment.tracking_url
 	    end
 	end
 
+	sidebar :shipment_stats, :only => :show do
+  		attributes_table_for shipment do
+	  		row "Items" do
+		  		i shipment.assets.count
+	  		end
+	  		row "Assets" do
+	  			shipment.assets.collect{|b| link_to b.name, [:admin, b]}.to_sentence.html_safe if shipment.assets
+	  		end
+  		end
+  	end
+
 	form do |f|
 	    f.inputs "Shipping Information" do
+	    	f.input :rus_po_id, :as => :select, :collection => RusPo.all, :label => "RUS PO"
 	        f.input :carrier, :label => "Carrier"
 	        f.input :tracking_number, :label => "Tracking Number"
 	        f.input :tracking_url, :label => "Tracking URL"
@@ -31,18 +46,9 @@ ActiveAdmin.register Shipment do
 	        f.input :on_schedule_at, :label => "On Schedule For"
 	        f.input :shipped_at, :label => "Shipped On"
 	        f.input :delivered_at, :label => "Delivered On"
+    		f.input :delivery_cost
 	    end 
-
-		f.has_many :assets do |ass_f|
-		    ass_f.inputs do
-		      	ass_f.input :name
-		      	ass_f.input :description
-		      	ass_f.input :product_id, :as => :select, :collection => Product.all, :include_blank => false
-		      	ass_f.input :quantity_shipped
-		      	ass_f.input :quantiy_recieved
-		    end
-		end
-	    f.buttons
+    	f.buttons
   	end
 end
 

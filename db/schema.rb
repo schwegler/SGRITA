@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121016163404) do
+ActiveRecord::Schema.define(:version => 20121016191805) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -77,6 +77,17 @@ ActiveRecord::Schema.define(:version => 20121016163404) do
     t.integer  "site_id"
     t.string   "attachment"
   end
+
+  create_table "attachments", :force => true do |t|
+    t.text     "description"
+    t.string   "file"
+    t.integer  "attachable_id"
+    t.string   "attachable_type"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "attachments", ["attachable_id"], :name => "index_attachments_on_attachable_id"
 
   create_table "autos", :force => true do |t|
     t.string   "make"
@@ -148,6 +159,8 @@ ActiveRecord::Schema.define(:version => 20121016163404) do
     t.date     "delivered_at"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.integer  "rus_po_id"
+    t.decimal  "delivery_cost"
   end
 
   create_table "sites", :force => true do |t|

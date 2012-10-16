@@ -26,6 +26,25 @@ ActiveAdmin.register RusPo do
 		end
 	end
 
+	sidebar :shipments, :only => :show do
+  		attributes_table_for rus_po do
+	  		row "Count" do
+		  		i rus_po.shipments.count
+	  		end
+	  		row "Shipments" do
+	  			rus_po.shipments.collect{|b| link_to b.tracking_number, [:admin, b]}.to_sentence.html_safe if rus_po.shipments
+	  		end
+  		end
+  	end
+
+  	sidebar :stats, :only => :show do
+  		attributes_table_for rus_po.assets do
+	  		row "Statuses" do
+		  		rus_po.assets.collect{|b| link_to status_tag(b.status), [:admin, b]}.to_sentence.html_safe
+	  		end
+  		end
+  	end
+
 	show do
 		columns do
 			column :id => "masthead" do
@@ -102,7 +121,7 @@ ActiveAdmin.register RusPo do
 				columns do
 					column do
 						b "Shipping"
-						br number_to_currency rus_po.delivery_cost
+						br number_to_currency rus_po.shipments.sum(:delivery_cost) if rus_po.shipments
 					end	
 					column do
 						b "Sales Tax"
@@ -123,28 +142,10 @@ ActiveAdmin.register RusPo do
     		f.input :RUS_project_number
     		f.input :terms
     		f.input :ships_to
-    		f.input :delivery_cost
     		f.input :sales_tax
     		f.input :total_cost
   		end
 
-		f.has_many :assets do |ass_f|
-		    ass_f.inputs do
-		      	ass_f.input :name
-		      	ass_f.input :description
-		      	ass_f.input :vendor_sku_number
-	        	ass_f.input :status, :as => :select, :collection => Asset::STATUSES, :include_blank => false		      	
-		      	ass_f.input :product_id, :as => :select, :collection => Product.all, :include_blank => false
-		      	ass_f.input :vendor_id, :as => :select, :collection => Vendor.all, :include_blank => false
-		      	ass_f.input :intended_site, :as => :select, :collection => Site.all.collect {|s| [ s.name ] }, :include_blank => false
-		      	ass_f.input :quantity_in_stock, :label => "Quantity"
-		      	ass_f.input :price
-		      	ass_f.input :extended_price
-		      	ass_f.input :rus_category
-		      	ass_f.input :rus_subcategory
-		      	ass_f.input :budget_line_item
-		    end
-		end
 		f.buttons
 	end  
 end

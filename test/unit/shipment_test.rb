@@ -13,6 +13,8 @@
 #  delivered_at    :date
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  rus_po_id       :integer
+#  delivery_cost   :decimal(, )
 #
 
 require 'test_helper'

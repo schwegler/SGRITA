@@ -14,6 +14,8 @@
 #
 
 class Site < ActiveRecord::Base
-  attr_accessible :city, :county, :gps, :kind, :name, :number
+  attr_accessible :city, :county, :gps, :kind, :name, :number, :attachments_attributes
   has_many :assets
+  has_many :attachments, :as => :attachable
+  accepts_nested_attributes_for :attachments
 end
