@@ -12,8 +12,10 @@
 #  title        :string(255)
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  attachment   :string(255)
 #
 
 class Employee < ActiveRecord::Base
-  attr_accessible :address, :email, :home_phone, :mobile_phone, :name, :title, :work_phone
+  	attr_accessible :remove_attachment, :attachment_cache, :attachment, :address, :email, :home_phone, :mobile_phone, :name, :title, :work_phone
+  	mount_uploader :attachment, AttachmentUploader
 end

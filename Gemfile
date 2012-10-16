@@ -32,6 +32,7 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'nested_form', :git => "git://github.com/ryanb/nested_form.git"
 gem 'aa_associations'
+gem "d3-rails"
 
 #Simple Admin Interface:
 gem 'activeadmin', :git => 'https://github.com/gregbell/active_admin.git'

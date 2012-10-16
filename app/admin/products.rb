@@ -13,7 +13,7 @@ ActiveAdmin.register Product do
 	end
 
   	sidebar :attachment, :only => :show do
-    	link_to(image_tag(product.attachment_url(:small)), product.attachment_url) if product.attachment?
+    	link_to(image_tag(product.attachment_url(:small)), product.attachment_url) if product.attachment
   	end
 
   	sidebar :product_stats, :only => :show do
@@ -22,10 +22,10 @@ ActiveAdmin.register Product do
 		  		i product.assets.count
 	  		end
 	  		row "Assets" do
-	  			product.assets.collect{|b| link_to b.name, [:admin, b]}.to_sentence.html_safe
+	  			product.assets.collect{|b| link_to b.name, [:admin, b]}.to_sentence.html_safe if product.assets
 	  		end
 	  		row "Avg. Price" do
-	  			i number_to_currency product.assets.average(:extended_price)
+	  			i number_to_currency product.assets.average(:extended_price) if product.assets
 	  		end
   		end
   	end
@@ -37,21 +37,8 @@ ActiveAdmin.register Product do
     		f.input :manufacturer
     		f.input :sku_number
     		f.input :mfr_number
+    		f.input :attachment, :as => :file
   		end
-
-		f.has_many :assets do |ass_f|
-		    ass_f.inputs do
-		      	ass_f.input :name
-		      	ass_f.input :description
-		      	ass_f.input :vendor_id, :as => :select, :collection => Vendor.all, :include_blank => false
-		      	ass_f.input :quantity_in_stock, :label => "Quantity"
-		      	ass_f.input :price
-		      	ass_f.input :extended_price
-		      	ass_f.input :rus_category
-		      	ass_f.input :rus_subcategory
-		      	ass_f.input :budget_line_item
-		    end
-		end
 	f.buttons
 	end    
 end

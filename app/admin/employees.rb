@@ -12,4 +12,7 @@ ActiveAdmin.register Employee do
 		column :title
 		column :email
 	end
+	sidebar :attachment, :only => :show do
+    	link_to(image_tag(employee.attachment_url(:small)), employee.attachment_url) if employee.attachment?
+  	end
 end

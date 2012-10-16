@@ -161,9 +161,15 @@ ActiveAdmin.register Asset do
 		  		end
 		 		panel "Purchase Information" do 
 				    attributes_table_for asset do
-				        row :purchased_at     	
-				        row :price
-				        row :extended_price
+				        row "Purchased" do
+				        	asset.purchased_at 
+			        	end    	
+				        row "Price" do
+				        	number_to_currency asset.price 
+			        	end
+				        row "Extended Price" do
+				        	number_to_currency asset.extended_price
+			        	end
 			      	end
 		      	end	
 			    if asset.shipment_id.nil?
