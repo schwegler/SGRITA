@@ -50,10 +50,6 @@ ActiveAdmin.register Asset do
 	    # end
   	end
 
-    form_associations do
-		association :products
-	end
-
   	index do
 	  	selectable_column
 	    column :id
